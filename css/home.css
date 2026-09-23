@@ -316,43 +316,69 @@ em { font-family: var(--f-display); font-style: italic; font-size: 1.12em; }
   gap: clamp(32px, 6vw, 100px); align-items: center;
 }
 
-/* Bühne mit Flakon */
+/* Bühne: Kampagnenbild */
 .stage {
   position: relative; aspect-ratio: 4 / 5; max-width: 100%;
-  display: grid; place-items: center;
 }
-.stage-numeral {
-  position: absolute; inset: 0; display: grid; place-items: center;
-  font-family: var(--f-display); font-style: italic; font-weight: 300;
-  font-size: clamp(14rem, 34vw, 30rem); line-height: 1;
-  color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--glow) 55%, transparent);
-  opacity: .5; pointer-events: none;
-  transition: opacity .4s var(--ease), transform .8s var(--ease);
+.shot {
+  position: absolute; inset: 0; margin: 0;
+  opacity: 0; visibility: hidden;
+  transition: opacity .9s var(--ease), visibility .9s;
 }
-.stage-numeral.is-swapping { opacity: 0; transform: scale(.94); }
-.stage-arch {
-  position: absolute; left: 18%; right: 18%; top: 4%; bottom: 10%;
-  border: 1px solid color-mix(in srgb, var(--glow) 60%, transparent);
-  border-radius: 999px 999px 0 0 / 60% 60% 0 0;
-  background: radial-gradient(ellipse 70% 55% at 50% 35%, color-mix(in srgb, var(--glow) 35%, transparent), transparent 75%);
-  transition: border-color 1s var(--ease), background 1s var(--ease);
+.shot.is-active { opacity: 1; visibility: visible; }
+.shot-frame {
+  position: absolute; inset: 0 8% 6% 0;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(135deg, rgba(217, 184, 119, .06) 0 12px, transparent 12px 24px),
+    linear-gradient(160deg, #2a1618, #120a0b);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140' preserveAspectRatio='none'%3E%3Cpath d='M0,140 L0,40 A55,55 0 0 1 50,0 A55,55 0 0 1 100,40 L100,140Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140' preserveAspectRatio='none'%3E%3Cpath d='M0,140 L0,40 A55,55 0 0 1 50,0 A55,55 0 0 1 100,40 L100,140Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
-.stage-plinth {
-  position: absolute; left: 22%; right: 22%; bottom: 7%; height: 3%;
-  background: linear-gradient(180deg, #3a2a24, #140c0d);
-  box-shadow: 0 18px 30px rgba(0, 0, 0, .6);
+/* Duoton: Foto schwarzweiss, darüber Bordeaux in den Schatten, Gold im Licht */
+.shot-frame img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.18) brightness(.92);
+  transform: scale(1.08);
+  transition: transform 6s var(--ease);
 }
-.stage-bottle {
-  position: absolute; left: 50%; bottom: 9.8%; width: 40%;
-  transform: translateX(-50%);
-  opacity: 0; pointer-events: none;
-  transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease);
-  filter: blur(8px);
+.shot.is-active .shot-frame img { transform: scale(1); }
+.shot-frame::before, .shot-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.shot-frame::before { background: linear-gradient(180deg, color-mix(in srgb, var(--glow) 55%, #6e1f24), #2a0d10); mix-blend-mode: multiply; }
+.shot-frame::after {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 20%, rgba(255, 220, 160, .28), transparent 70%),
+    linear-gradient(180deg, transparent 50%, rgba(12, 7, 8, .85) 100%);
+  mix-blend-mode: normal;
 }
-.stage-bottle.is-active { opacity: 1; filter: none; }
-.stage-bottle.from-right { transform: translateX(10%) rotate(6deg); }
-.stage-bottle.to-left { transform: translateX(-110%) rotate(-6deg); }
-.stage-bottle .flakon-svg { filter: drop-shadow(0 26px 34px rgba(0, 0, 0, .6)); }
+/* Fallback, wenn das Bild nicht lädt: Bildbriefing anzeigen */
+.shot.is-missing .shot-frame img { display: none; }
+.shot.is-missing .shot-frame::before { mix-blend-mode: normal; opacity: .35; }
+.shot-brief { display: none; }
+.shot.is-missing .shot-brief {
+  display: block; position: absolute; z-index: 2; left: 10%; right: 18%; top: 38%;
+  font-family: var(--f-caps); letter-spacing: .14em; font-size: .95rem; line-height: 1.5; color: rgba(241, 230, 210, .7); text-align: center;
+}
+.shot-claim {
+  position: absolute; z-index: 2; left: 6%; right: 18%; bottom: 13%;
+  font-family: var(--f-display); font-style: italic; font-weight: 400;
+  font-size: clamp(2rem, 3.6vw, 3.4rem); line-height: .98; letter-spacing: -.01em;
+  color: var(--pergament); text-wrap: balance;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .6);
+}
+.shot-flakon {
+  position: absolute; z-index: 3; right: 0; bottom: 0; width: 24%;
+  filter: drop-shadow(0 20px 26px rgba(0, 0, 0, .7));
+}
+.shot-flakon .flakon-svg { display: block; width: 100%; height: auto; }
+.shot-credit {
+  position: absolute; left: 0; bottom: -1.6em;
+  font-size: .68rem; letter-spacing: .08em; color: rgba(168, 154, 141, .7);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .shot.is-active .shot-claim { animation: rise-blur 1.2s var(--ease) .15s both; }
+  .js .shot.is-active .shot-flakon { animation: rise 1.2s var(--ease) .3s both; }
+}
 
 /* Seite mit Reitern */
 .duefte-side { display: grid; gap: 22px; align-content: center; }
@@ -406,13 +432,11 @@ em { font-family: var(--f-display); font-style: italic; font-size: 1.12em; }
   .duefte-side > .kicker { order: 1; }
   .duefte-title { order: 2; }
   .tabs { order: 3; }
-  .stage { order: 4; max-width: 420px; width: 100%; margin: 0 auto; aspect-ratio: 1 / 1; }
+  .stage { order: 4; max-width: 460px; width: 100%; margin: 0 auto 26px; }
   .panel { order: 5; }
-  .stage-bottle { width: 34%; }
-  .stage-numeral { font-size: clamp(12rem, 60vw, 20rem); }
 }
 @media (max-width: 560px) {
-  .tab-name { font-size: 1.2rem; }
+  .tab-name { font-size: 1.05rem; }
   .tab-num { font-size: .9rem; letter-spacing: .16em; }
   .pyramid dd { font-size: 1.2rem; }
   .pyramid div + div { padding-left: 10px; }
@@ -590,29 +614,6 @@ html:not(.js) .hor-dial { display: none; }
 .niche-price { margin-top: 8px; font-size: .95rem; letter-spacing: .08em; font-variant-numeric: tabular-nums; }
 .soon { display: inline-block; margin-left: 10px; padding: 2px 10px; border: 1px solid rgba(217, 184, 119, .4); font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-hell); vertical-align: 2px; }
 .numeri-more { text-align: center; margin-top: clamp(56px, 7vw, 88px); }
-
-/* ===========================================================
-   V. VERS
-   =========================================================== */
-.verse {
-  padding: clamp(110px, 16vw, 220px) var(--gutter);
-  background:
-    radial-gradient(ellipse 80% 70% at 50% 50%, var(--bordeaux) 0%, var(--bordeaux-deep) 55%, var(--nacht) 100%);
-  text-align: center;
-  display: grid; justify-items: center; gap: 36px;
-}
-.verse-quote { margin: 0; max-width: 18ch; }
-.verse-quote p {
-  font-family: var(--f-display); font-weight: 300; font-style: italic;
-  font-size: clamp(2.4rem, 6.4vw, 5.8rem); line-height: 1.05; color: var(--pergament);
-  text-wrap: balance;
-}
-.verse-quote p::before { content: "„"; color: var(--gold-hell); }
-.verse-quote p::after { content: "“"; color: var(--gold-hell); }
-.js .verse .w { opacity: .28; transition: opacity .6s var(--ease), color .6s var(--ease); }
-.js .verse .w.lit { opacity: 1; }
-.js .verse .w.gild { color: var(--gold-hell); }
-.verse-cite { font-family: var(--f-caps); letter-spacing: .26em; color: var(--gold-hell); font-size: 1rem; text-transform: lowercase; }
 
 /* ===========================================================
    VI. REGULA

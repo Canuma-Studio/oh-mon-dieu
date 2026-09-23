@@ -144,15 +144,19 @@
     var section = document.getElementById("duefte");
     var tabBtns = Array.prototype.slice.call(tablist.querySelectorAll("[role=tab]"));
     var panels = tabBtns.map(function (b) { return document.getElementById(b.getAttribute("aria-controls")); });
-    var bottles = Array.prototype.slice.call(section.querySelectorAll(".stage-bottle"));
-    var numeral = document.getElementById("stage-numeral");
-    var romans = ["I", "II", "III"];
+    var shots = Array.prototype.slice.call(section.querySelectorAll(".shot"));
+    // Fällt ein Platzhalterbild aus, zeigt der Rahmen das Bildbriefing
+    shots.forEach(function (sh) {
+      var img = sh.querySelector("img");
+      function miss() { sh.classList.add("is-missing"); }
+      if (img.complete && img.naturalWidth === 0 && img.getAttribute("loading") !== "lazy") miss();
+      img.addEventListener("error", miss);
+    });
     var current = 0;
 
     function selectTab(i, focus) {
       if (i === current) { if (focus) tabBtns[i].focus(); return; }
-      var dir = i > current ? 1 : -1;
-      tabBtns.forEach(function (b, k) {
+        tabBtns.forEach(function (b, k) {
         var on = k === i;
         b.classList.toggle("is-active", on);
         b.setAttribute("aria-selected", on ? "true" : "false");
@@ -163,20 +167,10 @@
       tablist.style.setProperty("--tab", i);
       section.style.setProperty("--glow", tabBtns[i].getAttribute("data-glow"));
 
-      // Flakon-Wechsel: alter gleitet hinaus, neuer hinein
-      var oldB = bottles[current], newB = bottles[i];
-      oldB.classList.remove("is-active", "from-right", "to-left");
-      if (!reduceMotion) {
-        oldB.classList.add(dir > 0 ? "to-left" : "from-right");
-        newB.classList.remove("to-left", "from-right");
-        newB.classList.add(dir > 0 ? "from-right" : "to-left");
-        void newB.offsetWidth;
-        newB.classList.remove("from-right", "to-left");
-      }
-      newB.classList.add("is-active");
-
-      numeral.classList.add("is-swapping");
-      setTimeout(function () { numeral.textContent = romans[i]; numeral.classList.remove("is-swapping"); }, reduceMotion ? 0 : 380);
+      shots[current].classList.remove("is-active");
+      var img = shots[i].querySelector("img");
+      if (img.getAttribute("loading") === "lazy") img.setAttribute("loading", "eager");
+      shots[i].classList.add("is-active");
 
       current = i;
       if (focus) tabBtns[i].focus();

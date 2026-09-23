@@ -186,7 +186,7 @@
     // Sonnenbogen von Ost (links) nach West (rechts)
     var ang = Math.PI * (1 - (f + e - t) / (n - 1));
     sticky.style.setProperty("--sun-x", (50 + Math.cos(ang) * 44).toFixed(2) + "%");
-    sticky.style.setProperty("--sun-y", (74 - Math.sin(ang) * 32).toFixed(2) + "%");
+    sticky.style.setProperty("--sun-y", (74 - Math.sin(ang) * 58).toFixed(2) + "%");
 
     var idx = e > 0.5 ? i1 : i0;
     if (idx !== activeHour) {

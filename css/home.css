@@ -387,7 +387,7 @@ em { font-family: var(--f-display); font-style: italic; font-size: 1.12em; }
 /* ===========================================================
    III. HORARIUM
    =========================================================== */
-.horarium { position: relative; height: 640vh; background: var(--nacht); }
+.horarium { position: relative; height: 340vh; background: var(--nacht); }
 .hor-sticky {
   --sky-top: #0b0708; --sky-bot: #1f1116; --night: 1; --sun-x: 8%; --sun-y: 90%;
   position: sticky; top: 0;
@@ -448,15 +448,14 @@ em { font-family: var(--f-display); font-style: italic; font-size: 1.12em; }
 .js .hour.is-active { opacity: 1; transform: none; filter: none; pointer-events: auto; }
 .js .hour.is-past { transform: translateY(-26px); }
 .hour-time { font-family: var(--f-caps); letter-spacing: .24em; color: var(--gold-hell); font-size: 1.05rem; }
-.hour-time span { display: inline-block; min-width: 3.2em; }
-.hour-name { font-weight: 300; font-style: italic; font-size: clamp(4rem, 10vw, 8.5rem); line-height: .9; color: var(--pergament); }
+.hour-name { font-weight: 300; font-style: italic; font-size: clamp(4rem, 10vw, 8.5rem); line-height: 1.05; padding-bottom: .08em; color: var(--pergament); }
 .hour-text { max-width: 40ch; font-size: 1.08rem; color: rgba(241, 230, 210, .88); }
 .hour-note { font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-hell); }
 .hour-note em { font-size: 1.5rem; letter-spacing: 0; text-transform: none; color: var(--pergament); }
 
 .hor-dial {
   grid-column: 1 / -1; grid-row: 3;
-  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid rgba(241, 230, 210, .22);
   margin-top: 24px;
 }
@@ -558,23 +557,6 @@ html:not(.js) .hor-dial { display: none; }
 .numeri-more { text-align: center; margin-top: clamp(56px, 7vw, 88px); }
 
 /* ===========================================================
-   VI. REGULA
-   =========================================================== */
-.regula { padding: clamp(90px, 11vw, 150px) var(--gutter); }
-.regula-head { max-width: 1120px; margin: 0 auto 56px; display: grid; gap: 16px; }
-.regula-head h2 { font-weight: 300; font-style: italic; font-size: clamp(2.4rem, 5vw, 4.2rem); color: var(--tinte); }
-.regula-list {
-  max-width: 1120px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(110, 31, 36, .35);
-}
-.regula-list li { display: grid; gap: 12px; align-content: start; padding: 32px clamp(18px, 3vw, 40px) 8px 0; }
-.regula-list li + li { padding-left: clamp(18px, 3vw, 40px); border-left: 1px solid rgba(110, 31, 36, .2); }
-.regula-num { font-family: var(--f-caps); letter-spacing: .24em; color: var(--bordeaux); }
-.regula-list h3 { font-size: 1.9rem; font-weight: 500; color: var(--tinte); }
-.regula-list p { color: var(--tinte-soft); max-width: 34ch; }
-
-/* ===========================================================
    VII. ANTE PORTAS (Newsletter)
    =========================================================== */
 .portas {
@@ -637,8 +619,6 @@ html:not(.js) .hor-dial { display: none; }
    =========================================================== */
 @media (max-width: 900px) {
   .niches { grid-template-columns: minmax(0, 1fr); max-width: 420px; gap: 72px; }
-  .regula-list { grid-template-columns: minmax(0, 1fr); }
-  .regula-list li, .regula-list li + li { padding: 26px 0; border-left: 0; border-bottom: 1px solid rgba(110, 31, 36, .2); }
   .hor-inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; }
   .hor-head { grid-row: 1; }
   .hor-head h2 { font-size: clamp(1.7rem, 6vw, 2.4rem); }
@@ -652,8 +632,6 @@ html:not(.js) .hor-dial { display: none; }
   .nave { padding-bottom: 110px; }
   .nave-window { top: 84px; width: 34vw; }
   .dial-tick { padding-top: 10px; text-align: center; }
-  .t-full { display: none; }
-  .t-short { display: inline; }
   .seal-form { flex-direction: column; align-items: stretch; }
   .seal { justify-self: center; margin: 8px auto 0; }
   .hour-name { font-size: clamp(3.4rem, 17vw, 5rem); }

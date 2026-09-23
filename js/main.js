@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var produkt = params.get("produkt");
     var messageField = document.getElementById("message");
     if (produkt && messageField && !messageField.value) {
-      messageField.value = "Ich interessiere mich für den Duft „" + produkt + "" und möchte informiert werden, sobald er erhältlich ist.";
+      messageField.value = "Ich interessiere mich für den Duft „" + produkt + "“ und möchte informiert werden, sobald er erhältlich ist.";
     }
 
     contactForm.addEventListener("submit", function (event) {

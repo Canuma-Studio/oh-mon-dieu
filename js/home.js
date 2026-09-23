@@ -137,6 +137,73 @@
     });
   }
 
+
+  /* ---------- Reiter: Düfte ---------- */
+  var tablist = document.querySelector(".tabs[role=tablist]");
+  if (tablist) {
+    var section = document.getElementById("duefte");
+    var tabBtns = Array.prototype.slice.call(tablist.querySelectorAll("[role=tab]"));
+    var panels = tabBtns.map(function (b) { return document.getElementById(b.getAttribute("aria-controls")); });
+    var bottles = Array.prototype.slice.call(section.querySelectorAll(".stage-bottle"));
+    var numeral = document.getElementById("stage-numeral");
+    var romans = ["I", "II", "III"];
+    var current = 0;
+
+    function selectTab(i, focus) {
+      if (i === current) { if (focus) tabBtns[i].focus(); return; }
+      var dir = i > current ? 1 : -1;
+      tabBtns.forEach(function (b, k) {
+        var on = k === i;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+        b.tabIndex = on ? 0 : -1;
+        panels[k].hidden = !on;
+        panels[k].classList.toggle("is-entering", on);
+      });
+      tablist.style.setProperty("--tab", i);
+      section.style.setProperty("--glow", tabBtns[i].getAttribute("data-glow"));
+
+      // Flakon-Wechsel: alter gleitet hinaus, neuer hinein
+      var oldB = bottles[current], newB = bottles[i];
+      oldB.classList.remove("is-active", "from-right", "to-left");
+      if (!reduceMotion) {
+        oldB.classList.add(dir > 0 ? "to-left" : "from-right");
+        newB.classList.remove("to-left", "from-right");
+        newB.classList.add(dir > 0 ? "from-right" : "to-left");
+        void newB.offsetWidth;
+        newB.classList.remove("from-right", "to-left");
+      }
+      newB.classList.add("is-active");
+
+      numeral.classList.add("is-swapping");
+      setTimeout(function () { numeral.textContent = romans[i]; numeral.classList.remove("is-swapping"); }, reduceMotion ? 0 : 380);
+
+      current = i;
+      if (focus) tabBtns[i].focus();
+    }
+
+    tabBtns.forEach(function (b, k) {
+      b.addEventListener("click", function () { selectTab(k, false); });
+      b.addEventListener("keydown", function (e) {
+        var n = tabBtns.length, t = null;
+        if (e.key === "ArrowRight") t = (k + 1) % n;
+        else if (e.key === "ArrowLeft") t = (k - 1 + n) % n;
+        else if (e.key === "Home") t = 0;
+        else if (e.key === "End") t = n - 1;
+        if (t !== null) { e.preventDefault(); selectTab(t, true); }
+      });
+    });
+
+    // Wischen auf dem Handy über die Bühne
+    var stage = section.querySelector(".stage"), sx = null;
+    stage.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) selectTab(clamp(current + (dx < 0 ? 1 : -1), 0, tabBtns.length - 1), false);
+    });
+  }
+
   /* ---------- Horarium: Tag im Kloster ---------- */
   var hor = document.getElementById("horarium");
   var sticky = document.getElementById("hor-sticky");

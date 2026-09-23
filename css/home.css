@@ -296,40 +296,127 @@ em { font-family: var(--f-display); font-style: italic; font-size: 1.12em; }
 }
 .parchment .folio-mark { color: var(--bordeaux); }
 
-.genesis { padding: clamp(90px, 12vw, 170px) var(--gutter); }
-.folio {
-  max-width: 1120px; margin: 0 auto;
-  display: grid; grid-template-columns: minmax(0, 1fr) 240px; column-gap: clamp(32px, 6vw, 96px); row-gap: 28px;
-}
-.folio-mark, .genesis-title { grid-column: 1 / -1; }
-.genesis-title {
-  font-weight: 300; font-style: italic; color: var(--tinte);
-  font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: 1; letter-spacing: -.015em;
-  max-width: 14ch;
-}
-.genesis-body { display: grid; gap: 22px; max-width: var(--measure); font-size: 1.08rem; color: var(--tinte-soft); margin-top: 20px; }
-.genesis-body em { color: var(--bordeaux); }
-.illuminated { font-size: 1.22rem; color: var(--tinte); line-height: 1.75; }
-.initial {
-  float: left;
-  display: grid; place-items: center;
-  width: 1.05em; height: 1.05em; margin: .08em .16em 0 0;
-  font-family: var(--f-display); font-style: italic; font-weight: 500; font-size: 4.3rem;
-  line-height: 1;
-  color: var(--gold-hell);
+
+
+/* ===========================================================
+   II. DIE NUMERI — Reiter mit den Düften
+   =========================================================== */
+.duefte {
+  --glow: #c8923f;
+  position: relative; overflow: hidden;
+  padding: clamp(90px, 11vw, 150px) var(--gutter);
   background:
-    radial-gradient(circle at 30% 25%, rgba(255, 240, 200, .18), transparent 60%),
-    var(--bordeaux);
-  outline: 1px solid var(--gold); outline-offset: 4px;
-  box-shadow: inset 0 0 0 1px rgba(217, 184, 119, .5);
+    radial-gradient(ellipse 55% 60% at 28% 50%, color-mix(in srgb, var(--glow) 30%, transparent), transparent 70%),
+    linear-gradient(180deg, #0b0607, var(--nacht) 30%, var(--nacht));
+  transition: background 1s var(--ease);
 }
-.marginalia {
-  align-self: end;
-  display: grid; gap: 22px;
-  padding-left: 22px; border-left: 1px solid rgba(184, 134, 63, .6);
-  font-family: var(--f-display); font-style: italic; font-size: 1.05rem; line-height: 1.45; color: var(--tinte-soft);
+.duefte-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 100px); align-items: center;
 }
-.marginalia span { display: block; font-family: var(--f-caps); font-style: normal; letter-spacing: .18em; font-size: .92rem; color: var(--bordeaux); }
+
+/* Bühne mit Flakon */
+.stage {
+  position: relative; aspect-ratio: 4 / 5; max-width: 100%;
+  display: grid; place-items: center;
+}
+.stage-numeral {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--f-display); font-style: italic; font-weight: 300;
+  font-size: clamp(14rem, 34vw, 30rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--glow) 55%, transparent);
+  opacity: .5; pointer-events: none;
+  transition: opacity .4s var(--ease), transform .8s var(--ease);
+}
+.stage-numeral.is-swapping { opacity: 0; transform: scale(.94); }
+.stage-arch {
+  position: absolute; left: 18%; right: 18%; top: 4%; bottom: 10%;
+  border: 1px solid color-mix(in srgb, var(--glow) 60%, transparent);
+  border-radius: 999px 999px 0 0 / 60% 60% 0 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 35%, color-mix(in srgb, var(--glow) 35%, transparent), transparent 75%);
+  transition: border-color 1s var(--ease), background 1s var(--ease);
+}
+.stage-plinth {
+  position: absolute; left: 22%; right: 22%; bottom: 7%; height: 3%;
+  background: linear-gradient(180deg, #3a2a24, #140c0d);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, .6);
+}
+.stage-bottle {
+  position: absolute; left: 50%; bottom: 9.8%; width: 40%;
+  transform: translateX(-50%);
+  opacity: 0; pointer-events: none;
+  transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease);
+  filter: blur(8px);
+}
+.stage-bottle.is-active { opacity: 1; filter: none; }
+.stage-bottle.from-right { transform: translateX(10%) rotate(6deg); }
+.stage-bottle.to-left { transform: translateX(-110%) rotate(-6deg); }
+.stage-bottle .flakon-svg { filter: drop-shadow(0 26px 34px rgba(0, 0, 0, .6)); }
+
+/* Seite mit Reitern */
+.duefte-side { display: grid; gap: 22px; align-content: center; }
+.duefte-title { font-weight: 300; font-style: italic; font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1; }
+.tabs {
+  position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid rgba(241, 230, 210, .18); margin-top: 10px;
+}
+.tab {
+  display: grid; gap: 2px; justify-items: start;
+  background: none; border: 0; cursor: pointer; text-align: left;
+  padding: 14px 8px 16px 0; color: rgba(241, 230, 210, .5);
+  transition: color .4s var(--ease);
+}
+.tab-num { font-family: var(--f-caps); font-size: 1.05rem; letter-spacing: .24em; }
+.tab-name { font-family: var(--f-display); font-style: italic; font-size: 1.5rem; line-height: 1.1; }
+.tab:hover { color: var(--pergament); }
+.tab.is-active { color: var(--gold-hell); }
+.tab.is-active .tab-name { color: var(--pergament); }
+.tab-ink {
+  position: absolute; left: 0; bottom: -1px; height: 2px; width: calc(100% / 3);
+  background: var(--gold-hell);
+  transform: translateX(calc(var(--tab, 0) * 100%));
+  transition: transform .6s var(--ease);
+}
+
+.panel { display: grid; gap: 16px; padding-top: 12px; }
+.panel[hidden] { display: none !important; }
+.panel:focus-visible { outline-offset: 8px; }
+.js .panel.is-entering > * { animation: rise .8s var(--ease) both; }
+.js .panel.is-entering > :nth-child(2) { animation-delay: .06s; }
+.js .panel.is-entering > :nth-child(3) { animation-delay: .12s; }
+.js .panel.is-entering > :nth-child(4) { animation-delay: .18s; }
+.js .panel.is-entering > :nth-child(5) { animation-delay: .24s; }
+.js .panel.is-entering > :nth-child(6) { animation-delay: .3s; }
+.panel-name { font-size: clamp(2.2rem, 3.6vw, 3.2rem); font-weight: 400; line-height: 1; }
+.panel-line { font-family: var(--f-display); font-style: italic; font-size: 1.3rem; color: var(--gold-hell); }
+.panel-desc { max-width: 46ch; color: rgba(241, 230, 210, .82); }
+.pyramid { margin: 6px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid rgba(217, 184, 119, .25); }
+.pyramid div { padding: 14px 12px 0 0; display: grid; gap: 2px; }
+.pyramid div + div { padding-left: 14px; border-left: 1px solid rgba(217, 184, 119, .18); }
+.pyramid dt { font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--rauch); }
+.pyramid dd { margin: 0; font-family: var(--f-display); font-style: italic; font-size: 1.45rem; color: var(--pergament); }
+.panel-meta { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: .86rem; color: var(--rauch); }
+.panel-buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 10px; padding-top: 20px; border-top: 1px solid rgba(241, 230, 210, .1); }
+.panel-price { font-size: 1.1rem; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 900px) {
+  .duefte-inner { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .duefte-side { display: contents; }
+  .duefte-side > .kicker { order: 1; }
+  .duefte-title { order: 2; }
+  .tabs { order: 3; }
+  .stage { order: 4; max-width: 420px; width: 100%; margin: 0 auto; aspect-ratio: 1 / 1; }
+  .panel { order: 5; }
+  .stage-bottle { width: 34%; }
+  .stage-numeral { font-size: clamp(12rem, 60vw, 20rem); }
+}
+@media (max-width: 560px) {
+  .tab-name { font-size: 1.2rem; }
+  .tab-num { font-size: .9rem; letter-spacing: .16em; }
+  .pyramid dd { font-size: 1.2rem; }
+  .pyramid div + div { padding-left: 10px; }
+}
 
 /* ===========================================================
    III. HORARIUM
@@ -606,8 +693,6 @@ html:not(.js) .hor-dial { display: none; }
    Responsive
    =========================================================== */
 @media (max-width: 900px) {
-  .folio { grid-template-columns: minmax(0, 1fr); }
-  .marginalia { align-self: start; }
   .niches { grid-template-columns: minmax(0, 1fr); max-width: 420px; gap: 72px; }
   .regula-list { grid-template-columns: minmax(0, 1fr); }
   .regula-list li, .regula-list li + li { padding: 26px 0; border-left: 0; border-bottom: 1px solid rgba(110, 31, 36, .2); }

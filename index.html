@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oh, mon Dieu! — Parfum de caractère</title>
+<meta name="description" content="Oh, mon Dieu! — eine Schweizer Parfummarke mit Charakter. Entdecke die Story, die Düfte und die Werte hinter der Marke.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">Oh, mon Dieu!</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" aria-current="page">Start</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
+      <li><a href="produkte.html">Düfte</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Numerus Unus</span>
+      <h1>Oh, mon Dieu!</h1>
+      <p>Ein Parfum, das nicht flüstert, sondern spricht. Entstanden in der Schweiz, für Menschen, die keine Kompromisse beim Charakter machen.</p>
+      <div class="hero-actions">
+        <a href="produkte.html" class="btn btn-primary">Düfte entdecken</a>
+        <a href="ueber-uns.html" class="btn btn-outline-light">Die Geschichte</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="visual">
+        <div class="flakon-placeholder"></div>
+      </div>
+      <div>
+        <span class="eyebrow">Die Marke</span>
+        <h2>Ein Ausruf. Kein Flüstern.</h2>
+        <p>Oh, mon Dieu! ist mehr als ein Name — es ist der Moment, in dem ein Duft alles verändert. Wir kreieren Parfums für Menschen, die auffallen wollen, ohne sich zu verstellen.</p>
+        <p style="margin-top:16px;">Jede Flasche trägt eine Nummer. Jede Nummer erzählt eine eigene Geschichte.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Die Kollektion</span>
+        <h2>Drei Charaktere, ein Statement</h2>
+        <p>Ein erster Blick auf unsere kommende Kollektion — der Launch folgt in Kürze.</p>
+      </div>
+      <div class="product-grid">
+
+        <article class="product-card">
+          <div class="product-visual"><div class="flakon-placeholder"></div></div>
+          <span class="badge-soon">Bald erhältlich</span>
+          <h3>Numerus Unus</h3>
+          <span class="product-notes">Bergamotte · Iris · Amber</span>
+          <span class="product-price">CHF 148.—</span>
+        </article>
+
+        <article class="product-card">
+          <div class="product-visual"><div class="flakon-placeholder"></div></div>
+          <span class="badge-soon">Bald erhältlich</span>
+          <h3>Numerus Duo</h3>
+          <span class="product-notes">Safran · Rose · Oud</span>
+          <span class="product-price">CHF 158.—</span>
+        </article>
+
+        <article class="product-card">
+          <div class="product-visual"><div class="flakon-placeholder"></div></div>
+          <span class="badge-soon">Bald erhältlich</span>
+          <h3>Numerus Tres</h3>
+          <span class="product-notes">Vetiver · Tabak · Vanille</span>
+          <span class="product-price">CHF 158.—</span>
+        </article>
+
+      </div>
+      <div style="text-align:center; margin-top:48px;">
+        <a href="produkte.html" class="btn btn-outline-dark">Alle Düfte ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="editorial">
+    <div class="container">
+      <blockquote>„Trag immer schöne Kleider und salbe dein Gesicht mit duftenden Ölen.“</blockquote>
+      <cite>Prediger 9, HFA — Inspiration für Numerus Unus</cite>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container values-row">
+      <div>
+        <div class="value-icon">CH</div>
+        <h3>Swiss Made</h3>
+        <p>Komponiert und abgefüllt in der Schweiz, mit höchstem Anspruch an Qualität.</p>
+      </div>
+      <div>
+        <div class="value-icon">%</div>
+        <h3>Hohe Konzentration</h3>
+        <p>Extrait-Qualität für eine Duftentwicklung, die den ganzen Tag hält.</p>
+      </div>
+      <div>
+        <div class="value-icon">N°</div>
+        <h3>Limitiert nummeriert</h3>
+        <p>Jeder Flakon trägt seine eigene Nummer — ein Unikat in einer kleinen Serie.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <span class="eyebrow">Bleib informiert</span>
+      <h2 style="margin-top:10px;">Erfahre als Erste·r vom Launch</h2>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" name="email" placeholder="deine@email.ch" aria-label="E-Mail-Adresse" required>
+        <button type="submit" class="btn btn-primary">Anmelden</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="logo">Oh, mon Dieu!</span>
+        <p>Eine Schweizer Parfummarke mit Charakter. Entwickelt in Zürich.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="produkte.html">Düfte</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:hallo@oh-mondieu.com">hallo@oh-mondieu.com</a></li>
+          <li>Zürich, Schweiz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Oh, mon Dieu! Alle Rechte vorbehalten.</span>
+      <span>oh-mondieu.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

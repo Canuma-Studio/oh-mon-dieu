@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt — Oh, mon Dieu!</title>
+<meta name="description" content="Nimm Kontakt mit Oh, mon Dieu! auf oder trag dich für den Launch der Kollektion ein.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">Oh, mon Dieu!</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
+      <li><a href="produkte.html">Düfte</a></li>
+      <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" style="min-height:44vh;">
+    <div class="hero-content">
+      <span class="eyebrow">Kontakt</span>
+      <h1>Sag uns Hallo</h1>
+      <p>Fragen, Presse-Anfragen oder einfach neugierig? Wir freuen uns, von dir zu hören.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+
+      <div class="contact-info">
+        <div class="block">
+          <span class="eyebrow">E-Mail</span>
+          <h3>hallo@oh-mondieu.com</h3>
+          <p>Wir antworten in der Regel innerhalb von 2 Werktagen.</p>
+        </div>
+        <div class="block">
+          <span class="eyebrow">Standort</span>
+          <h3>Zürich, Schweiz</h3>
+          <p>Entwickelt und komponiert in der Schweiz.</p>
+        </div>
+        <div class="block">
+          <span class="eyebrow">Social</span>
+          <h3>@ohmondieu</h3>
+          <p>Folge uns für Einblicke hinter die Kulissen der Kollektion.</p>
+        </div>
+      </div>
+
+      <div>
+        <!--
+          Hinweis für die Weiterentwicklung:
+          Dieses Formular validiert aktuell nur im Browser (siehe js/main.js)
+          und versendet noch keine echte E-Mail. Um Nachrichten wirklich zu
+          empfangen, kann z.B. ein Formular-Dienst wie Formspree oder Netlify
+          Forms angebunden werden (action="https://formspree.io/f/DEINE-ID"
+          method="POST" ergänzen) — der Rest der Struktur bleibt unverändert.
+        -->
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-success" id="form-success">
+            Danke für deine Nachricht! Wir melden uns in Kürze bei dir.
+          </div>
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <span class="field-error">Bitte gib deinen Namen an.</span>
+          </div>
+
+          <div class="field">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" required>
+            <span class="field-error">Bitte gib eine gültige E-Mail-Adresse an.</span>
+          </div>
+
+          <div class="field">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" required></textarea>
+            <span class="field-error">Bitte schreib uns eine kurze Nachricht.</span>
+          </div>
+
+          <p class="form-note">Mit dem Absenden erklärst du dich damit einverstanden, dass wir dich zu deiner Anfrage kontaktieren.</p>
+
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Nachricht senden</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="logo">Oh, mon Dieu!</span>
+        <p>Eine Schweizer Parfummarke mit Charakter. Entwickelt in Zürich.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="produkte.html">Düfte</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:hallo@oh-mondieu.com">hallo@oh-mondieu.com</a></li>
+          <li>Zürich, Schweiz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Oh, mon Dieu! Alle Rechte vorbehalten.</span>
+      <span>oh-mondieu.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

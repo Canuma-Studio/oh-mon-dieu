@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Düfte — Oh, mon Dieu!</title>
+<meta name="description" content="Die kommende Duft-Kollektion von Oh, mon Dieu! — nummeriert, limitiert, charakterstark.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">Oh, mon Dieu!</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
+      <li><a href="produkte.html" aria-current="page">Düfte</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" style="min-height:56vh;">
+    <div class="hero-content">
+      <span class="eyebrow">Die Kollektion</span>
+      <h1>Unsere Düfte</h1>
+      <p>Drei nummerierte Charaktere. Der Online-Verkauf startet in Kürze — trag dich ein und du erfährst es zuerst.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!--
+        Shop-Hinweis für die Weiterentwicklung:
+        Jede .product-card trägt data-product-id / data-variant-id als Platzhalter.
+        Sobald ein Shopify Buy Button (oder eine andere Storefront-API) angebunden wird,
+        können diese IDs befüllt und der "Benachrichtigen"-Button durch einen echten
+        "In den Warenkorb"-Button ersetzt werden, ohne die restliche Struktur zu ändern.
+      -->
+
+      <div class="product-grid">
+
+        <article class="product-card" data-product-id="numerus-unus" data-variant-id="">
+          <div class="product-visual"><div class="flakon-placeholder"></div></div>
+          <span class="badge-soon">Bald erhältlich</span>
+          <h3>Numerus Unus</h3>
+          <span class="product-notes">Bergamotte · Iris · Amber</span>
+          <p>Der Auftakt der Kollektion: frisch und zitrisch im Kopf, warm und pudrig im Herz, getragen von einem weichen Amber-Fundament.</p>
+          <span class="product-price">CHF 148.— <span style="color:var(--color-ink-soft); font-size:0.85rem;">/ 50 ml</span></span>
+          <a href="kontakt.html?produkt=Numerus%20Unus" class="btn btn-outline-dark">Benachrichtigen</a>
+        </article>
+
+        <article class="product-card" data-product-id="numerus-duo" data-variant-id="">
+          <div class="product-visual"><div class="flakon-placeholder"></div></div>
+          <span class="badge-soon">Bald erhältlich</span>
+          <h3>Numerus Duo</h3>
+          <span class="product-notes">Safran · Rose · Oud</span>
+          <p>Intensiv und opulent — eine Rose, umspielt von Safran und einem rauchigen Oud-Herz, das lange auf der Haut bleibt.</p>
+          <span class="product-price">CHF 158.— <span style="color:var(--color-ink-soft); font-size:0.85rem;">/ 50 ml</span></span>
+          <a href="kontakt.html?produkt=Numerus%20Duo" class="btn btn-outline-dark">Benachrichtigen</a>
+        </article>
+
+        <article class="product-card" data-product-id="numerus-tres" data-variant-id="">
+          <div class="product-visual"><div class="flakon-placeholder"></div></div>
+          <span class="badge-soon">Bald erhältlich</span>
+          <h3>Numerus Tres</h3>
+          <span class="product-notes">Vetiver · Tabak · Vanille</span>
+          <p>Erdig und sinnlich: würziger Tabak trifft auf grünen Vetiver, abgerundet von einer samtigen Vanille-Basis.</p>
+          <span class="product-price">CHF 158.— <span style="color:var(--color-ink-soft); font-size:0.85rem;">/ 50 ml</span></span>
+          <a href="kontakt.html?produkt=Numerus%20Tres" class="btn btn-outline-dark">Benachrichtigen</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--color-cream-dark);">
+    <div class="container" style="text-align:center; max-width:640px;">
+      <span class="eyebrow">Gut zu wissen</span>
+      <h2 style="margin:14px 0 18px;">Wie wir verkaufen werden</h2>
+      <p>Der Online-Verkauf ist in Vorbereitung. Sobald die Kollektion verfügbar ist, kannst du hier direkt bestellen — bis dahin freuen wir uns, wenn du dich für den Launch einträgst.</p>
+      <div style="margin-top:28px;">
+        <a href="kontakt.html" class="btn btn-primary">Für Launch eintragen</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="logo">Oh, mon Dieu!</span>
+        <p>Eine Schweizer Parfummarke mit Charakter. Entwickelt in Zürich.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="produkte.html">Düfte</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:hallo@oh-mondieu.com">hallo@oh-mondieu.com</a></li>
+          <li>Zürich, Schweiz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Oh, mon Dieu! Alle Rechte vorbehalten.</span>
+      <span>oh-mondieu.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
